@@ -1,2 +1,2 @@
-# Social-gathering-app
+# Social-Group-App
 react-native
