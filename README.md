@@ -1,2 +1,2 @@
 # Social-Group-App
-react-native
+react-native expo
