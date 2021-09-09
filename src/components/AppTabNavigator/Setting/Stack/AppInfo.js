@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
-import { StyleSheet, Image, View, Text } from "react-native";
+import { StyleSheet, Dimensions, Image, View, Text } from "react-native";
+
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
         top: -40,
         flex: 1,
         justifyContent: 'center',
-        textAlign: 'center'
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundColor: 'white'
     },
 
     font_M:{
         textAlign: 'center',
-        fontSize:20,
+        fontSize:0.03*Width,
         margin: 5
     },
 });
@@ -23,8 +28,8 @@ class AppInfo extends Component {
             <View style={styles.container}>
                 <Image
                     style={{
-                    width: '100%',
-                    height: '50%',
+                    width: '50%',
+                    height: '30%',
                     }}
                     source={require('../../../../../assets/icon.png')}
                 />

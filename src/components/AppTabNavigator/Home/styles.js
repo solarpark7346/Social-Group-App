@@ -3,26 +3,32 @@ import  { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 
     container: {
-        
-
+        backgroundColor: 'white',
+        height: '100%'
     },
 
     notice : {
         alignItems: 'flex-start',
-        margin:10
+        flexDirection: 'row',
+        margin:5
     },
 
     title: {
         margin: 20,
-        fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
 
-    content_1: {
+    content: {
         justifyContent:'center',
         textAlign: 'center',
         alignItems: 'center'
+    },
+
+    font_text: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: 'black',
     },
 
     btns:{
@@ -32,8 +38,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: '80%',
         fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'dodgerblue',
     },
 });
 

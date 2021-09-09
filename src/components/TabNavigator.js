@@ -4,33 +4,59 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './AppTabNavigator/Home/home'
+import PostScreen from './AppTabNavigator/Post/presenter'
 import SettingScreen from './AppTabNavigator/Setting/presenter';
 import MemberList from './AppTabNavigator/MemberList/memberList'
 
 const AppTabNavigator = createBottomTabNavigator(
     {
+        // TabNavigatior router
         Home: { 
             screen: HomeScreen,
             navigationOptions: {
-                tabBarOptions: { showLabel: false },
+                tabBarOptions: { 
+                    showLabel: false,
+                    },
                 tabBarLabel: '홈',
-                }
+                }, 
             },
                 
         MemberList: { 
             screen: MemberList,
             navigationOptions: {
-                tabBarOptions: { showLabel: false },
-                tabBarLabel: '친구',
+                tabBarOptions: { 
+                    showLabel: false,
+                    },
+                tabBarLabel: '임원',
                 }
-            },
+            }, 
+
+        Post: { 
+            screen: PostScreen,
+            navigationOptions: {
+                tabBarOptions: { 
+                    showLabel: false,
+                    },
+                tabBarLabel: '글쓰기',
+                }
+            }, 
+
         Setting: { 
             screen: SettingScreen,
             navigationOptions: {
-                tabBarOptions: { showLabel: false },
+                tabBarOptions: { 
+                    showLabel: false,
+                    // activeTintColor: 'tomato',
+                    // inactiveTintColor: 'white',
+                    // style: {
+                    //     backgroundColor: 'dodgerblue',
+                    //     color: 'white'
+                    // } 
+                },
                 tabBarLabel: '설정',
                 }
             },  
+        // End TabNavigatior router
     },
 
     {   
@@ -44,6 +70,8 @@ const AppTabNavigator = createBottomTabNavigator(
                     iconName = 'home-outline';
                 }else if (routeName === 'MemberList') {
                     iconName = 'people-outline';
+                }else if (routeName === 'Post') {
+                    iconName = "newspaper-outline"
                 }else if (routeName === 'Setting') {
                     iconName = "settings-outline"
                 }
@@ -56,7 +84,7 @@ const AppTabNavigator = createBottomTabNavigator(
                 )
             }
         })
-    }
+    },
 )
 
 export default createAppContainer(AppTabNavigator );

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, Dimensions } from "react-native"; 
 
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
+
 export default class MainScreen extends Component {
     constructor(props){
         super(props);
         this.state = { 
             email: '',
             password: '',
+            access: 'success',
+            test: 'success'
         }
     }
 
@@ -20,13 +25,16 @@ export default class MainScreen extends Component {
         }
     } 
 
-    goScreen = () => {
+    goScreen(){
         this.props.navigation.navigate('Home')
+    }
+
+    Login_check(){
+
     }
 
     Login_handler(props) {
         const { email, password } = this.state;
-
         fetch(
             'http://192.168.0.108:80/login.php', {
             method: 'POST',
@@ -39,15 +47,16 @@ export default class MainScreen extends Component {
             })
             }
         )
-        .then(function(response){ 
-            if(response.status >= 400 && response.status < 600){ 
-                alert('로그인 실패') ; 
-            } else {
-                alert('로그인 완료! 메인 페이지로 이동합니다.')
-            }
-        }) 
+        .then(res => { 
+            console.log(JSON.stringify(res));
+            return res.json()})
         .then(console.log(this.state.email, this.state.password))
-        this.props.navigation.navigate('Home')
+
+        if (this.state.access == this.state.test) {
+            this.props.navigation.navigate('Home')
+        } else {
+            alert('비밀번호가 틀렸습니다.')
+        }
     }
 
     render() {
@@ -59,11 +68,11 @@ export default class MainScreen extends Component {
                 </Text>
 
                 <Text style={styles.font_L}>
-                    {"Social Group App"}
+                    {"ARCHIVE_SNS"}
                 </Text>
 
                 <Text style={styles.info}>
-                    {"\n동창들의 소식이 궁금하다면!\n" }
+                    {"\SNS 소식이 궁금하다면!\n" }
                 </Text>
             </View>
 
@@ -82,7 +91,7 @@ export default class MainScreen extends Component {
                     label='Password'
                     value={this.state.password}
                     onChangeText={(password) => this.setState({ password })}
-                    // secureTextEntry={true}
+                    secureTextEntry={true}
                     />
 
                 <Text 
@@ -116,13 +125,13 @@ const styles = StyleSheet.create({
     },  
 
     font_L:{
-        fontSize: 40,
+        fontSize:0.05*Width,
         fontWeight:'bold',
         shadowColor: 'rgba(0,0,0,0.2)'
     },
 
     font_M:{
-        fontSize:30,
+        fontSize:0.03*Width,
     },
 
     button: {
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
     },
 
     textInput:{
-        fontSize: 20,
+        fontSize:0.05*Width,
         width: 300,
         height: 30,
         paddingLeft: 10,

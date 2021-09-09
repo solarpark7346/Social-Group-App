@@ -1,10 +1,13 @@
-import  { StyleSheet } from "react-native";
+import  { StyleSheet, Dimensions} from "react-native";
+
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding: 20,
+        backgroundColor: 'white'
     },
 
     img:{
@@ -25,12 +28,12 @@ const styles = StyleSheet.create({
         },
     
     UserName:{
-        fontSize:30,
+        fontSize:0.05*Width,
         fontWeight:'bold',
     },
     
     contentText:{
-        fontSize:20,
+        fontSize:0.05*Width,
         margin:10
     },
 });

@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
-import { StyleSheet, Image, View, Text } from "react-native";
+import { StyleSheet, Dimensions, Image, View, Text } from "react-native";
+
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
         top: -40,
         flex: 1,
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: 'white'
     },
 
     font_M:{
         textAlign: 'center',
-        fontSize:20,
+        fontSize:0.05*Width,
         margin: 5
     },
 });
@@ -24,7 +28,7 @@ class Help extends Component {
 
                 <Text style={styles.font_M}>
                     <Text style={{color: 'dodgerblue', fontWeight: 'bold'}}
-                    >Social Group App Link</Text>
+                    >태원이노베이션</Text>
                 </Text>
             </View>
         );

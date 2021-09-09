@@ -8,7 +8,6 @@ export default class memberList extends Component{
         super(props); 
             this.state={
                 fetch_datas: [],
-                
                 isLoading: false,
                 isFetching: false
             };
@@ -17,7 +16,7 @@ export default class memberList extends Component{
     componentDidMount() {
         this.setState({ isLoading: true});
 
-        let url = "http://192.168.0.108:80/usergetpost.php"
+        let url = "http://127.0.0.1/method_request.php"
 
             fetch( url ,  {
                 method: 'GET',
@@ -26,10 +25,9 @@ export default class memberList extends Component{
                     'Accept': 'application/json',
                 },
             })
-            
             .then(console.log("get fetch_datas run..."))
             .then(res => {
-                console.log(res);
+                console.log(JSON.stringify(res));
                 return res.json()})
             .then(res => this.setState({ fetch_datas: res, isLoading: false }, 
                 () => console.log('data Success')))
@@ -61,27 +59,23 @@ export default class memberList extends Component{
         }
 
         return( 
-            <ScrollView>
-                <View style={style.root}>
-                    <Text style={style.titleText}>사용자</Text>
-                    <FlatList
-                        data={this.state.fetch_datas} 
-                        renderItem={this.renderItem}
-                        keyExtractor={ item=> item.email }
-                        onRefresh={() => this.onRefresh}
-                        refreshing={this.state.isFetching}
-                        />
-                </View>
-            </ScrollView>
+            <View style={style.root}>
+                <FlatList
+                    data={this.state.fetch_datas} 
+                    renderItem={this.renderItem}
+                    keyExtractor={ item=> item.name }
+                    onRefresh={() => this.onRefresh}
+                    refreshing={this.state.isFetching}
+                    />
+            </View>
         );
     }
 
     renderItem=({item})=>{ 
-
         console.log(item);
-
         return(
             <SafeAreaView style={{ flex: 1 }}>
+                <ScrollView>
                 <TouchableOpacity 
                     style={style.contentView} 
                     onPress={()=> this.MemberListInfo(item)}
@@ -89,11 +83,10 @@ export default class memberList extends Component{
 
                     <View style={style.userinfoView}>
                         <Text style={style.UserName}>{item.name}</Text>
-                        <Text style={style.contentText}>{item.add}</Text>
-                        <Text style={style.contentText}>{item.bir}</Text>
-                        <Text style={style.contentText}>{item.dep}</Text>
-                        <Text style={style.contentText}>{item.email}</Text>
-                        <Text style={style.contentText}>{item.pos}</Text>
+                        <Text style={style.contentText}>학번: {item.stu_num}</Text>
+                        <Text style={style.contentText}>학과: {item.dep}</Text>
+                        <Text style={style.contentText}>소속: {item.now_gp}</Text>
+                        <Text style={style.contentText}>주소: {item.ar}</Text>
                     </View>
 
                     <Image
@@ -102,6 +95,7 @@ export default class memberList extends Component{
                     />
 
                 </TouchableOpacity>
+                </ScrollView>
             </SafeAreaView>
         );
     }
